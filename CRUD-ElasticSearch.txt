@@ -1,0 +1,79 @@
+---------------------- CRUD OPERATIONS IN ELASTIC SEARCH --------------------------
+
+In Elasticsearch, data is stored as documents. A document is a JSON object that 
+stores whatever data you want to store in Elasticsearch. Each document has a unique ID.
+
+STEP 1. First we need to create index before doing any CRUD OPERATIONS.
+
+STEP 2. syntax:
+        PUT Name-of-the-Index
+        Example : PUT favorite_candy
+
+
+STEP 3. 1) POST
+        You use POST when you want Elasticsearch to autogenerate an id for your document.
+
+        Syntax:
+        POST Name-of-the-Index/_doc
+        {
+        "field": "value"
+        }
+
+        Example: POST favorite_candy/_doc
+                {
+                "first_name": "Lisa",
+                "candy": "Sour Skittles"
+                }
+        here _doc is endpoint
+
+
+STEP 4. 2) PUT
+        You use the verb PUT when you want to assign a specific id to your document. 
+        
+        Syntax :
+        PUT Name-of-the-Index/_doc/id-you-want-to-assign-to-this-document
+        {
+        "field": "value"
+        }
+        
+        Example : PUT favorite_candy/_doc/1
+        {
+        "first_name": "John",
+        "candy": "Starburst"
+        }
+
+
+STEP 5. 3) READ
+        
+        Syntax :
+        GET Name-of-the-Index/_doc/id-of-the-document-you-want-to-retrieve
+        
+        Example : GET favorite_candy/_doc/1
+
+
+STEP 6. UPDATE
+
+        There will be times when you will want to update an existing document
+
+        Syntax:
+        POST Name-of-the-Index/_update/id-of-the-document-you-want-to-update
+        {
+        "doc": {
+            "field1": "value",
+            "field2": "value",
+           }
+        }
+
+        Example : POST favorite_candy/_update/1
+        {
+        "doc": {
+            "candy": "M&M's"
+          }
+        }
+
+STEP 7. DELETE
+        
+        Syntax:
+        DELETE Name-of-the-Index/_doc/id-of-the-document-you-want-to-delete
+        
+        DELETE favorite_candy/_doc/1
