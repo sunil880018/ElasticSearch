@@ -77,3 +77,55 @@ STEP 7. DELETE
         DELETE Name-of-the-Index/_doc/id-of-the-document-you-want-to-delete
         
         DELETE favorite_candy/_doc/1
+
+
+STEP 8. To search for documents with id.
+        GET cat/_search
+        {
+                "query": {
+                        "match": {
+                        "_id": "97351395-2241-4287-953e-6987dbf93827"
+                        }
+                }
+        }
+
+
+STEP 9. In case you only need some specific fields. Use the query with _source key,
+        GET cat/_search
+        {
+                "_source": [
+                "title",
+                "description"
+                ],
+                "query": {
+                        "match": {
+                        "_id": "97351395-2241-4287-953e-6987dbf93827"
+                        }
+                }
+        }
+
+
+STEP 10. If you are not aware of the field, where you will get the search term, and want to search all the fields for the search text, then use query_string
+        GET cat/_search
+        {
+                "query": {
+                        "query_string": {
+                        "query": "kiwi"
+                        }
+                }
+        }
+
+
+STEP 11. To search for the parent document using child, try the below request.
+        GET cat/_search
+        {
+                "query": {
+                        "parent_id": {
+                                "type": "child",
+                                "id": "00000001"
+                        }
+                }
+        }
+
+
+        
